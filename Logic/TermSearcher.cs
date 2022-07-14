@@ -39,7 +39,7 @@ namespace LetsSpeak.Logic
             if (cont == 0)
             {
                 Console.WriteLine();
-                Console.WriteLine("Nenhum termo igual ao digitado foi encontrado.");
+                Console.WriteLine("Nenhum termo encontrado.");
                 Console.Write("Deseja buscar outro termo? ");
                 var answer = Console.ReadLine();
                 if (answer.Equals("sim", StringComparison.InvariantCultureIgnoreCase))
