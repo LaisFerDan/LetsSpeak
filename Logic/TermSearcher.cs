@@ -15,28 +15,30 @@ namespace LetsSpeak.Logic
             Console.Clear();
 
             var content = _loader.Load(dbPath);
-            var validTerm = false;
 
             Console.Write("Digite o termo que deseja buscar: ");
             var term = Console.ReadLine().ToLower();
             if (term.Contains("*") || term.Contains("?"))
             {
                 Console.WriteLine("Wildcards (* e ?) não são aceitas. Tente novamente.");
+                Console.ReadKey();
                 SearchTerm(dbPath, dict);
             }
+
             foreach (var item in dict)
             {
                 if (item.Key.Contains(term, StringComparison.InvariantCultureIgnoreCase))
                 {
                     Console.WriteLine($"{item.Key} : {item.Value}");
                 }
-                validTerm = true;
             }
+            
             Console.ReadKey();
 
-            if (!content.ContainsKey(term) && validTerm == false)
+            if (!content.ContainsKey(term))
             {
-                Console.WriteLine("Nenhum termo encontrado.");
+                Console.WriteLine();
+                Console.WriteLine("Nenhum termo igual ao digitado foi encontrado.");
                 Console.Write("Deseja buscar outro termo? ");
                 var answer = Console.ReadLine();
                 if (answer.Equals("sim", StringComparison.InvariantCultureIgnoreCase))

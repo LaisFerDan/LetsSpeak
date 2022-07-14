@@ -17,6 +17,7 @@ namespace LetsSpeak.Logic
             if (term.Contains("*") || term.Contains("?"))
             {
                 Console.WriteLine("Wildcards (* e ?) não são aceitas. Tente novamente.");
+                Console.ReadKey();
                 RegisterTerm(dict, dbPath);
             }
             Console.Write("Digite o significado do termo: ");
