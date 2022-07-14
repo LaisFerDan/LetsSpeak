@@ -14,7 +14,7 @@ namespace LetsSpeak.Logic
         {
             Console.Clear();
 
-            var content = _loader.Load(dbPath);
+            int cont = 0;
 
             Console.Write("Digite o termo que deseja buscar: ");
             var term = Console.ReadLine().ToLower();
@@ -25,17 +25,18 @@ namespace LetsSpeak.Logic
                 SearchTerm(dbPath, dict);
             }
 
-            foreach (var item in dict)
+            foreach (var savedTerm in dict)
             {
-                if (item.Key.Contains(term, StringComparison.InvariantCultureIgnoreCase))
+                if (savedTerm.Key.Contains(term, StringComparison.InvariantCultureIgnoreCase))
                 {
-                    Console.WriteLine($"{item.Key} : {item.Value}");
+                    Console.WriteLine($"{savedTerm.Key} - {savedTerm.Value}");
+                    cont++;
                 }
             }
             
             Console.ReadKey();
 
-            if (!content.ContainsKey(term))
+            if (cont == 0)
             {
                 Console.WriteLine();
                 Console.WriteLine("Nenhum termo igual ao digitado foi encontrado.");
